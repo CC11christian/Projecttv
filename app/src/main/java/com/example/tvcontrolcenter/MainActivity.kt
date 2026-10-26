@@ -208,7 +208,7 @@ class MainActivity : Activity() {
 
         setContentView(root)
 
-        root.requestFocus()
+        content.getChildAt(0)?.requestFocus()
 
     }
 
