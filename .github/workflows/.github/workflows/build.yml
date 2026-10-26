@@ -1,0 +1,47 @@
+name: Build Android APK
+
+on:
+
+  workflow_dispatch:
+
+  push:
+
+    branches: [main]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Descargar codigo
+
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+
+        uses: actions/setup-java@v4
+
+        with:
+
+          distribution: temurin
+
+          java-version: '17'
+
+      - name: Compilar APK
+
+        run: |
+
+          gradle assembleDebug
+
+      - name: Guardar APK
+
+        uses: actions/upload-artifact@v4
+
+        with:
+
+          name: TVControlCenter-debug
+
+          path: app/build/outputs/apk/debug/app
